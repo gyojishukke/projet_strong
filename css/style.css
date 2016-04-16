@@ -1,0 +1,18 @@
+h1 {
+	text-align: center;
+	background: #EE6E73;
+	color: #ccc;
+	margin: 0 0 30px 0;
+	padding: 40px;
+}
+
+.btn {
+	background: #EE6E73;
+	color: #ccc;
+}
+
+.bloc {
+	background: #EE6E73;
+	margin: 30px;
+	padding: 20px;
+}

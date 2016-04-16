@@ -1,0 +1,172 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sport Training Report On Next Goal ">
+
+    <title>strong</title>
+
+    <!-- TODO : ajouter le favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="../css/coffrage.css">
+    <!-- <link rel="stylesheet" href="css/main.css"> -->
+    
+
+</head>
+
+
+
+<body>
+
+    <header id="containerBandeauTitre">
+        <!-- TODO : ajouter le lien dynamique du titre : <?=$titre ?> -->
+        <h1>&lt; strong &gt;</h1>
+    </header>
+
+    <main class="wrapper">
+        <section class="content">
+<!-- ================================================================================================================= -->
+            <form method="POST" class="pure-form pure-form-aligned inputCarnet">
+                <div class="containerBouton pricing-tables pure-g">
+                    <div class="containerBloc pure-u-1 pure-u-md-1-3">
+                        <div class="pricing-table pricing-table-free">
+
+                                <div class="titreBoutonCarnet">
+                                    <span>mon</span>
+                                    <h2>CARNET</h2>
+                                    <span class="pure-button pure-button-primary buttonInfoCarnet">Ajout d'une note</span>
+                                </div>
+                    
+                            
+                                <div>
+                                    <!-- Type d'activite -->
+                                    <div class="pure-control-group">
+                                        <select classe"pure-form" id="activite" name="activite">
+                                            <option disabled selected>Type d'activité</option>
+                                            <?php  foreach ($activite as $value) { ?>
+                                                <option value="<?= $value['id'] ?>"><?= $value['activite']  ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+
+                                    <!-- Type d'exercice -->
+                                    <div class="pure-control-group">
+                                        <select classe"pure-form" id="exercice" name="exercice">
+                                            <option disabled selected>Type d'exercice</option>
+                                            <?php  foreach ($exercice as $vale) { ?>
+                                                <option value="<?= $vale['id'] ?>" class="<?= $vale['id_activite']?>"><?= $vale['exercice']  ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+
+                                    <!-- Type d'epreuve -->
+                                    <div class="pure-control-group">
+                                        <select name="epreuve" classe"pure-form" >
+                                            <option disabled selected>Type d'épreuve</option>
+                                            <?php  foreach ($epreuve as $val) {
+
+                                            ?>
+
+                                            <option value="<?= $val['id'] ?>"><?= $val['epreuve']  ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="pure-control-group">
+                                        <textarea name="sensation" placeholder="Sensation, ressenti"></textarea>
+                                    </div>
+
+                                    <div class="pure-control-group">
+                                        <input name="lieux" type="text" placeholder="Lieux" >
+                                    </div>
+
+                                    <div class="pure-control-group">
+                                        <input name="condition" type="text" placeholder="Météo" >
+                                    </div>
+
+                                    <div class="pure-control-group">
+                                        <input name="distance" type="text" placeholder="distance parcourue / poids : 10, 20, 40, etc." >
+                                    </div>
+
+                                    <!-- UNITE : kilometre, kilo, miles -->
+                                    <div class="pure-control-group">
+                                        <select classe"pure-form" name="unite" >
+                                            <option disabled selected>Selectionner l'unité</option>
+                                            <?php  foreach ($unit as $va) {
+
+                                            ?>
+
+                                            <option value="<?= $va['id'] ?>"><?= $va['unite']  ?></option>
+                                            <?php } ?>
+                                        </select>
+
+                                    </div>
+
+
+                                    <div class="pure-control-group">
+                                        <textarea placeholder="Commentaire..." name="commentaire"></textarea>
+                                    </div>
+
+                                    <div class="pure-control-group">
+                                        <!-- A FAIRE AFIN D'ENREGISTRER L'ID DE L'UTILISATEUR QUI REMPLI LE FORMULAIRE -->
+                                        <!-- <input type="hidden" value="1" name="utilisateur" > -->
+                                    </div>
+
+
+                                    <input class="pure-button pure-button-primary buttonGo" type="submit" name="submit" value="Envoi"> 
+                                    <!-- <button type="submit" name="submit" class="button-choose pure-button button-carnet" >Envoi</button> -->
+                                </div>
+                            
+                        </div>
+                    </div>
+
+
+
+
+                </div> <!-- end pricing-tables -->
+            </div> <!-- end l-content -->  
+
+            </form>
+
+
+
+
+<!-- ================================================================================================================= -->
+
+    </section>
+
+    <nav id="navigation">
+        <a href="#" title="apropos">A propos</a>
+        <a href="#" title="contact">Contact</a>
+        <a href="#" title="CGU">CGU</a>
+        <a href="#" title="FAQ">FAQ</a>
+    </nav>
+    <aside>
+        <a href="#">Accès admin</a>
+        <a href="#">Réglages</a>
+    </aside>
+
+</main>
+
+<footer>
+    Vers l'infini et au delà !
+</footer>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+
+<!-- <script src="js/vendor/bootstrap.min.js"></script> -->
+
+<script src="js/main.js"></script>  
+
+
+</body>
+</html>

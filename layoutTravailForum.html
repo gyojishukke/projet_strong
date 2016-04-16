@@ -1,0 +1,127 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sport Training Report On Next Goal ">
+
+    <title>strong</title>
+
+    <!-- TODO : ajouter le favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="../css/coffrage.css">
+    <!-- <link rel="stylesheet" href="css/main.css"> -->
+    
+
+</head>
+
+
+
+<body>
+
+    <header id="containerBandeauTitre">
+        <!-- TODO : ajouter le lien dynamique du titre : <?=$titre ?> -->
+        <h1>&lt; strong &gt;</h1>
+    </header>
+
+    <main class="wrapper">
+        <section class="content">
+<!-- ================================================================================================================= -->
+            <form enctype="multipart/form-data" method="POST" name="ajoutForum" class="pure-form pure-form-aligned inputCarnet" action="">
+                <div class="containerBouton pricing-tables pure-g">
+                    <div class="containerBloc pure-u-1 pure-u-md-1-3">
+                        <div class="pricing-table pricing-table-free">
+
+                                <div class="titreBoutonForum">
+                                    <span>mon</span>
+                                    <h2>FORUM</h2>
+                                    <span class="pure-button pure-button-primary buttonInfoForum">Ajout d'une contribution</span>
+                                </div>
+                    
+                            
+                                <div>
+                                    <!-- Type d'activite -->
+                                    <div class="pure-control-group">
+                                        <select classe"pure-form" id="typeContribution" name="typeContribution">
+                                            <option disabled selected>Type de contribution</option>
+                                            <?php  foreach ($typeContribution as $value) { ?>
+                                                <option value="<?= $value['id'] ?>"><?= $value['typeContribution']  ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    
+                                    <div>
+                                        <input type="text" name="titreContrib" placeholder="Titre">
+                                    </div>
+
+                                    <div class="pure-control-group">
+                                        <textarea placeholder="Texte" name="QuestionInfo" rows="15" cols="10"></textarea>
+                                    </div>
+
+
+                                    <div class="pure-control-group">
+                                        <p class="notice">Vous pouvez joindre à votre contribution jusqu'à trois images au format (.jpg ou .png)</p>
+
+                                        <input type="file" name="photo1" class="pure-button pure-button-primary button-forum" id="photo1Id">
+                                        <input type="file" name="photo2" class="pure-button pure-button-primary button-forum" id="photo2Id">
+                                        <input type="file" name="photo3" class="pure-button pure-button-primary button-forum" id="photo3Id">
+                                    </div>
+
+                                   
+
+
+                                    <input class="pure-button pure-button-primary buttonGo" type="submit" name="submit" value="Envoi"> 
+                                    <!-- <button type="submit" name="submit" class="button-choose pure-button button-carnet" >Envoi</button> -->
+                                </div>
+                            
+                        </div>
+                    </div>
+
+
+
+
+                </div> <!-- end pricing-tables -->
+            </div> <!-- end l-content -->  
+
+            </form>
+
+
+
+
+<!-- ================================================================================================================= -->
+
+    </section>
+
+    <nav id="navigation">
+        <a href="#" title="apropos">A propos</a>
+        <a href="#" title="contact">Contact</a>
+        <a href="#" title="CGU">CGU</a>
+        <a href="#" title="FAQ">FAQ</a>
+    </nav>
+    <aside>
+        <a href="#">Accès admin</a>
+        <a href="#">Réglages</a>
+    </aside>
+
+</main>
+
+<footer>
+    Vers l'infini et au delà !
+</footer>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.2.min.js"><\/script>')</script>
+
+<!-- <script src="js/vendor/bootstrap.min.js"></script> -->
+
+<script src="js/main.js"></script>  
+
+
+</body>
+</html>

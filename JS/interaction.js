@@ -1,0 +1,1 @@
+$("#exercice").chained("#activite");
