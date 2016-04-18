@@ -1,7 +1,9 @@
 
-<?php ob_start() ?>
-<?php $titre = "Inscription"; ?>
+<?php ob_start() ;
 
+$titre = "Inscription";
+// on affiche "Accès admin" si le compte a un role admin
+require_once 'templates/admin.php';
 ?>
 <!-- ligne de boutons Carnet et forum -->
 <section class="wrapper">

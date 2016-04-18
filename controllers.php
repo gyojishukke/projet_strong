@@ -1,17 +1,16 @@
 <?php
-
-function accueil() {
+function accueil()
+{
 	
-	require 'template/home.php';
+	require 'templates/home.php';
 }
-
 
 //*********************************************
 //  Login 
 //*********************************************
 function login() {
 	
-	require 'template/login_form.php';
+	require 'templates/login_form.php';
 }
 		 
 function login_traitement() 
@@ -20,8 +19,6 @@ function login_traitement()
 	{
 		require 'login_traitement.php';
 	}
-	
-	
 }
 //*********************************************
 //  inscription 
@@ -29,7 +26,7 @@ function login_traitement()
 
 function inscription() {
 	
-	require 'template/inscription_form.php';
+	require 'templates/inscription_form.php';
 }
 		 
 function inscription_traitement() 
@@ -42,13 +39,13 @@ function inscription_traitement()
 	
 }
 //*********************************************
-<<<<<<< HEAD
+
 //  mot cde passe oublie 
 //*********************************************
 
 function login_oublie() {
 	
-	require 'template/oublie_form.php';
+	require 'templates/oublie_form.php';
 }
 		 
 function login_oublie_traitement() 
@@ -56,13 +53,14 @@ function login_oublie_traitement()
 	if(isset($_POST['valider']))
 	{
 		require 'login_oublie_traitement.php';
-=======
+	}
+}
 //  mot de passe oublie 
 //*********************************************
 
 function oublie_password() {
 	
-	require 'template/oublie_password.php';
+	require 'templates/oublie_password.php';
 }
 		 
 function oublie_password_traitement() 
@@ -72,28 +70,22 @@ function oublie_password_traitement()
 		require 'oublie_password_traitement.php';
 	}
 	
-	
 }
 //*********************************************
 //  changer son mdp
 //*********************************************
 
-function change_password($id) {
-	
-	require 'template/change_password.php';
+function change_password($id)
+{
+	require 'templates/change_password.php';
 }
 		 
 function change_password_traitement() 
-
-
 {
 	if(isset($_POST['valider']))
 	{
 		require 'change_password_traitement.php';
->>>>>>> yvan
 	}
-	
-	
 }
 
 ?>

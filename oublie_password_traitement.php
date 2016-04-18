@@ -17,12 +17,12 @@ function envoiMail($lien, $email)
 	$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
 	// $mail->SMTPDebug = 1;
 	$mail->SMTPAuth = true;                               // Enable SMTP authentication
-	$mail->Username = 'yvan.lebrigand@gmail.com';                 // SMTP username
+	$mail->Username = $email;                 // SMTP username
 	$mail->Password = 'Romane02';                           // SMTP password
 	$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
 	$mail->Port = 465;                                    // TCP port to connect to
 
-	$mail->setFrom('yvan.lebrigand@gmail.com', 'Le Brigand' );
+	$mail->setFrom($email );
 	$mail->addAddress($email);     // Add a recipient
 	
 	$mail->isHTML(true);                                  // Set email format to HTML
@@ -69,8 +69,7 @@ if(isset($_POST['valider']))
 		}
 		
 		// on vérifie si l'email existe dans la table utilisateur
-		// si l=il exisye on retourne le mot de passe
-		
+			
 		$resultat = get_email_by_email($email);
 		if(!$resultat['email'])
 		{
@@ -81,17 +80,34 @@ if(isset($_POST['valider']))
 		// si aucune erreur
 		if(!$erreur)
 		{
-			$id     = $resultat['id'];
+
+			if(isset($_SESSION['erreur']['login']))
+				{
+					unset($_SESSION['erreur']['login']);
+				}
+			$id     = intval($resultat['id']);
 			$token  = md5(uniqid(rand(), true));
 			
 
-		// insertion dna sl atable tokens  : id de l’utilisateur et un token fraichement generé.
+
+
+		// ****************************************
+		// on désactive le compte tant que le lien  sur
+		// le mail n'a pas été activé
+		// ****************************************
+		
+		$resultat= etat_user($id, false);
+	
+
+		// insertion dans  la table tokens  : id de l’utilisateur et un token fraichement generé.
 		// crée un token associé à l’ID de l’utilisateur  : $token  = md5(uniqueid(rand(); true))
 		// crée un lien  : <a href =”reinit.php?id=xx=token=xx”>lien<a>
 			$idToken = new_token($id, $token);
 			if($idToken!=="")
 			{
-				$lien = "<a href=\"http://www.strong/index.php/change_password?&id=" . $id . "&token=" . $token . "\">Lien</a>";
+
+				// $id = id de l'utilisateur
+				$lien = "<a href=\"http://www.projet_strong/index.php/change_password?&id=" . $id . "&token=" . $token . "\">Lien</a>";
 				envoiMail($lien, $email);
 			}
 			// retour page login

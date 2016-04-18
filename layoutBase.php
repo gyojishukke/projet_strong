@@ -1,10 +1,3 @@
-<?php
-
-
-
-?>
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -36,7 +29,9 @@
         <section class="content">
             
 
-            <?php include 'carnet.php' ?>
+
+         <!--    <?php // include 'carnet.php' ?> -->
+          <?php echo $content ?>
 
         </section>
 
@@ -45,10 +40,17 @@
             <a href="#" title="contact">Contact</a>
             <a href="#" title="CGU">CGU</a>
             <a href="#" title="FAQ">FAQ</a>
+            
+    <a href="#">Accès admin</a>
+            
+
         </nav>
         <aside>
-            <a href="#">Accès admin</a>
-            <a href="#">Réglages</a>
+            <!-- on affiche le bouton login seulement si on n'est pas connecté -->
+           <?php if(!$connecte){echo "<a href=" .  '"http://www.projet_strong/index.php/login"' . ">Se connecter</a> ";}?>
+            <!-- on affiche le bouton admin si le compte connecté est admin -->
+           <?php if($admin){echo "<a href=" .  '"#"' . ">Accès admin</a> ";}?>
+           <a href="#">Réglages</a>
         </aside>
 
     </main>
@@ -56,8 +58,6 @@
     <footer>
         Vers l'infini et au delà !
     </footer>
-
-
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>

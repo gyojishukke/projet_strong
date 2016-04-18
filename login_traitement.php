@@ -2,6 +2,9 @@
 
 $erreur =false;
 require_once 'modele/model.php';
+if(isset($_SESSION['erreur']['login'])){
+    $_SESSION['erreur']['login'] =array();
+}
 
 	if(isset($_POST['email']) && isset($_POST['password']))
 	{
@@ -27,6 +30,12 @@ require_once 'modele/model.php';
 			$erreur =true;
 		}
 		
+		if(!$resultat['actif'])
+		{
+			$_SESSION['erreur']['login'] = "Votre compte n'est plus actif, merci de changer votre mot de passe ";
+			$erreur =true;
+		}
+
 		// on vérifie si le mdp correspond 
 		$mdp = htmlspecialchars(trim($_POST['password']));
 		if(!password_verify($mdp, $resultat['password']))
@@ -43,11 +52,12 @@ require_once 'modele/model.php';
 			// Le mdp correspond 
 			$_SESSION['user']['id'] = $resultat['id'];
 			$_SESSION['user']['email'] = $email;
+			$_SESSION['user']['connecte'] = 'connecte';
 			if(isset($_SESSION['erreur']['login']))
 			{
-				unset($_SESSION['erreur']['login']) ; 
+				$_SESSION['erreur']['login'] ='Vous etes connectés';
 			} 
-			$id = intval($id);
+			$id = intval($resultat['id']);
 		
 
 			if(isset($_SESSION['user']['roles']))
@@ -55,18 +65,25 @@ require_once 'modele/model.php';
 				unset($_SESSION['user']['roles']);
 			}
 			// on cherche tous les roles de l'utilisateur 
-			if(!empty(get_roles_by_id($id)))
+			$roles=(get_roles_by_id($id));
+		
+			if(!empty($roles))
 			{
 			   	foreach ($roles as $role)
 		    	{
 		    		$_SESSION['user']['roles'][]= $role['libelle'];
-	    		}		   		
+	    		}	
+	    		
 		 	}
-
-		 } 
-		 
-			
-		header('Location: /index.php/login');
+			header('Location: /index.php');
+		} 
+		else
+		{
+			header('Location: /index.php/login');
+		}
+		
+		
+		
 	}
 	else
 	{
