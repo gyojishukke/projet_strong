@@ -50,6 +50,3 @@ require_once 'templates/admin.php';
 
 <?php $content = ob_get_clean() ?>
 <?php include "layoutBase.php" ?>
-
-
-

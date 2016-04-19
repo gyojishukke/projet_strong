@@ -66,4 +66,3 @@ if(isset($_GET['id']) && isset($_GET['token']))
 <?php $content = ob_get_clean() ?>
 <?php include "layoutBase.php" ?>
 <?php } ?>
-
