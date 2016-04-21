@@ -9,7 +9,7 @@ require_once 'controllers.php';
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 echo "<small>route = $uri</small><br>";
 
-<<<<<<< HEAD
+
 =======
 echo "ma route" . $uri ;
 >>>>>>> yvan
@@ -21,7 +21,7 @@ if('/index.php' === $uri)
 
 //*********************************************
 // cas de Login 
-<<<<<<< HEAD
+
 =======
 //*********************************************
 
@@ -30,7 +30,7 @@ elseif('/index.php/login' === $uri)
 {
 	login();
 }
-<<<<<<< HEAD
+
 
 elseif ('/index.php/accesForum' === $uri & !isset($_SESSION['user']['id'])) 
 {
@@ -81,7 +81,7 @@ elseif ('/index.php/oublie_password_traitement' === $uri )
 // oublie password - on rentre l'email
 //*********************************************
 
->>>>>>> yvan
+
 elseif ('/index.php/login_init' === $uri )
 {
 	login_oublie() ;
@@ -91,7 +91,7 @@ elseif ('/index.php/login_init_post' === $uri )
 {
 	login_oublie_traitement() ;
 }
-<<<<<<< HEAD
+
 //*********************************************
 // cas de Login 
 elseif('/index.php/inscription' === $uri)
@@ -104,7 +104,7 @@ elseif ('/index.php/inscription_post' === $uri )
 	inscription_traitement() ;
 }
 
-=======
+
 
 
 //*********************************************
@@ -134,9 +134,29 @@ elseif ('/index.php/accesCarnet' === $uri & !isset($_SESSION['user']['id']) )
 }
 
 
+//*********************************************
+// cas carnet "Momar"
+elseif('/index.php/carnet' === $uri){
+	carnet();
+	carnet_enregistre();
+} 
+
+// elseif('/index.php/carnet_traitement' === $uri){
+	
+// }
 
 
->>>>>>> yvan
+elseif ('/index.php/carnet_modif' === $uri) {
+	modifier_carnet();
+}
+elseif('/index.php/carnet_affiche' === $uri){
+	affiche_carnet();
+}
+elseif ('/index.php/forum' === $uri) {
+	
+}
+
+
 //*********************************************
 
 else {
