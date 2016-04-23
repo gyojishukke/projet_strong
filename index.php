@@ -101,7 +101,26 @@ elseif ('/index.php/accesCarnet' === $uri & !isset($_SESSION['user']['id']) )
 
 
 
+//*********************************************
+// cas carnet "Momar"
+//*********************************************
 
+elseif('/index.php/carnet' === $uri){
+	carnet();
+	carnet_enregistre();
+} 
+// elseif('/index.php/carnet_traitement' === $uri){
+	
+// }
+elseif ('/index.php/carnet_modif' === $uri) {
+	modifier_carnet();
+}
+elseif('/index.php/carnet_affiche' === $uri){
+	affiche_carnet();
+}
+elseif ('/index.php/forum' === $uri) {
+	
+}
 //*********************************************
 
 
