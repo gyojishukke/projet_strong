@@ -3,7 +3,7 @@
 function open_database_connection()
 {
 	try{
-		$dbh = new PDO('mysql:host=localhost;dbname=strong;charset=utf8','projetstack','123456');
+		$dbh = new PDO('mysql:host=localhost;dbname=strong;charset=utf8','root','');
 		// Meilleur mode pour la gestion des erreurs : (pas chercher à comprendre)
 		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); 
@@ -136,4 +136,98 @@ function get_token($id_utilisateur, $token)
 	$resultat = $stmt->fetch(PDO::FETCH_ASSOC);
 	close_database_connection($dbh);
 	return $resultat;
+}
+
+
+/***************************************************************************/
+/***************************         MOMAR                       ***********/
+/***************************************************************************/
+function affichageActivite(){
+	$dbh = open_database_connection();
+	// la requête permmettant d'afficher les types d'activités dans le select
+	$sql = "SELECT * FROM type_activite";
+	$stmt = $dbh->query($sql);
+	$activite = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	close_database_connection($dbh);
+	return $activite;
+}
+function affichageEpreuve(){
+	$dbh = open_database_connection();
+// la requête permmettant d'afficher les types d'epreuve dans le select
+	$sql = "SELECT * FROM type_epreuve";
+	$stmt = $dbh->query($sql);
+	$epreuve = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	close_database_connection($dbh);
+	return $epreuve;
+}
+function affichageExercice(){
+	$dbh = open_database_connection();
+// la requête permmettant d'afficher les types d'exercice dans le select
+	$sql = "SELECT * FROM type_exercice ";
+	$stmt = $dbh->query($sql);
+	$exercice = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	close_database_connection($dbh);
+	return $exercice;
+}
+function affichageUnite(){
+	$dbh = open_database_connection();
+// la requête permmettant d'afficher les types d'unite dans le select
+	$sql = "SELECT * FROM unite ";
+	$stmt = $dbh->query($sql);
+	$unit = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	close_database_connection($dbh);
+	return $unit;
+}
+function carnetRegistre(){
+	
+	$dbh = open_database_connection();
+	$stmt = $dbh->prepare("INSERT INTO carnets (utilisateur_id, type_epreuve_id, type_activite_id, type_exercice_id, valeur, unite_id, sensations, lieu, conditions, commentaires) VALUES (:utilisateur, :epreuve, :activite, :exercice, :valeur, :unite, :sensation, :lieux, :condition, :commentaire)");
+	$stmt->bindValue(':utilisateur', 1,PDO::PARAM_INT);
+	$stmt->bindValue(':epreuve', $epreuve,PDO::PARAM_INT);
+	$stmt->bindValue(':activite', $activite,PDO::PARAM_INT);
+	$stmt->bindValue(':exercice', $exercice,PDO::PARAM_INT);
+	$stmt->bindValue(':valeur', $distance,PDO::PARAM_INT);
+	$stmt->bindValue(':unite', $unite,PDO::PARAM_INT);
+	$stmt->bindValue(':sensation', $sensation,PDO::PARAM_STR);
+	$stmt->bindValue(':lieux', $lieux,PDO::PARAM_STR);
+	$stmt->bindValue(':condition', $condition,PDO::PARAM_STR);
+	$stmt->bindValue(':commentaire', $commentaire,PDO::PARAM_STR);
+	$result = $stmt->execute();
+	close_database_connection($dbh);
+	return $result;
+}
+function afficheCarnet(){
+	$dbh = open_database_connection();
+	// il manque les restrictions pour chaque utilisateurs
+	$sql = "SELECT * FROM carnets";
+	$stmt = $dbh->query($sql);
+	$carnet = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	close_database_connection($dbh);
+	return $carnet;
+}
+// afin de modifier une note du carnet
+function affichernote(){
+	$dbh = open_database_connection();
+	$sql = "SELECT * FROM carnets WHERE id ='".$_GET['id']."'"; //R.F
+	$stmt = $dbh->query($sql);
+	$carnet = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	close_database_connection($dbh);
+	return $carnet;
+}
+function modifiernote(){
+	$dbh = open_database_connection();
+	$stmt = $dbh->prepare("UPDATE carnets SET type_epreuve_id= :epreuve, type_activite_id= :activite, type_exercice_id= :exercice, valeur= :valeur, unite_id= :unite, sensations= :sensation, lieu= :lieux, conditions= :condition, commentaires= :commentaire WHERE id = :ide");
+	$stmt->bindValue(':ide',$_GET['id'],PDO::PARAM_INT);
+	$stmt->bindValue(':epreuve',$_POST['epreuve'],PDO::PARAM_INT);
+	$stmt->bindValue(':activite',$_POST['activite'],PDO::PARAM_INT);
+	$stmt->bindValue(':exercice',$_POST['exercice'],PDO::PARAM_INT);
+	$stmt->bindValue(':valeur',$_POST['distance'],PDO::PARAM_INT);
+	$stmt->bindValue(':unite',$_POST['unite'],PDO::PARAM_INT);
+	$stmt->bindValue(':sensation',$_POST['sensation'],PDO::PARAM_STR);
+	$stmt->bindValue(':lieux',$_POST['lieux'],PDO::PARAM_STR);
+	$stmt->bindValue(':condition',$_POST['condition'],PDO::PARAM_STR);
+	$stmt->bindValue(':commentaire',$_POST['commentaire'],PDO::PARAM_STR);
+	$result = $stmt->execute();
+	close_database_connection($dbh);
+	return $result;
 }
